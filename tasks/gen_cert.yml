@@ -1,0 +1,10 @@
+---
+
+- name: Generate certificate if needed.
+  shell: |
+    certbot certonly \
+    --standalone \
+    --noninteractive \
+    --agree-tos \
+    --email {{ item.admin_email | default("admin@" + item.domain) }} \
+    -d {{ item.domain }}

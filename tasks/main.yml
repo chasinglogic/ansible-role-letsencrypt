@@ -1,0 +1,27 @@
+---
+- include_tasks: certbot_{{ ansible_pkg_mgr }}.yml
+
+- set_fact:
+    regenerate_certs: false
+
+- name: Check if certificate already exists.
+  include_tasks: check_certs.yml
+  loop: "{{ ssl_domains }}"
+
+- name: Stop {{ ssl_webserver }}
+  systemd:
+    name: "{{ ssl_webserver }}"
+    state: stopped
+  when: regenerate_certs
+
+- name: Generate new certificates if needed.
+  include_tasks: gen_cert.yml
+  # If the cert doesn't exist or hasn't been modified in 60 days
+  when: regenerate_certs
+  loop: "{{ ssl_domains  }}"
+
+- name: Start {{ ssl_webserver }}
+  systemd:
+    name: "{{ ssl_webserver }}"
+    state: started
+  when: regenerate_certs

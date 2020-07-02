@@ -1,0 +1,12 @@
+---
+- name: Checking cert for {{ item.domain }}
+  stat:
+    path: /etc/letsencrypt/live/{{ item.domain }}/cert.pem
+  register: letsencrypt_cert
+
+- name: Certs are out of date
+  set_fact:
+    regenerate_certs: true
+  when: |
+    not letsencrypt_cert.stat.exists or
+    ((ansible_date_time.epoch|int - letsencrypt_cert.stat.mtime) > (60 * 60 * 24))
