@@ -1,0 +1,3 @@
+---
+ssl_webserver: nginx
+ssl_domains: []

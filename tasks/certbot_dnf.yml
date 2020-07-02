@@ -1,0 +1,15 @@
+---
+- name: DNF | Install certbot
+  become: true
+  become_user: root
+  dnf:
+    name:
+      - python3-certbot
+
+- name: APT | Install cerbot plugin
+  become: true
+  become_user: root
+  dnf:
+    name:
+      - python3-certbot-{{ ssl_webserver }}
+  when: ssl_webserver in ["apache", "nginx"]

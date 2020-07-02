@@ -1,0 +1,15 @@
+---
+galaxy_info:
+  author: Mathew Robinson
+  role_name: letsencrypt
+  description: Generate and deploy Let's Encrypt certs to web servers
+  license: GPLv3
+  min_ansible_version: 2.8
+  platforms:
+    - name: GenericLinux
+  galaxy_tags:
+    - ssl
+    - letsencrypt
+    - encryption
+    - nginx
+    - apache
