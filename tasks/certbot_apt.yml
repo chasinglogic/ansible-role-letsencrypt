@@ -6,10 +6,16 @@
     name:
       - certbot
 
+- set_fact:
+    certbot_python_prefix: python3
+  when: |
+    ansible_distribution == "Ubuntu" and
+    int(ansible_distribution_major_version) > 18
+
 - name: APT | Install cerbot plugin
   become: true
   become_user: root
   apt:
     name:
-      - python-certbot-{{ ssl_webserver }}
+      - "{{ certbot_python_prefix }}-certbot-{{ ssl_webserver }}"
   when: ssl_webserver in ["apache", "nginx"]
