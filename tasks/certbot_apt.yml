@@ -8,9 +8,9 @@
 
 - set_fact:
     certbot_python_prefix: python3
-  when: |
-    ansible_distribution == "Ubuntu" and
-    int(ansible_distribution_major_version) > 18
+  when:
+    - ansible_distribution == "Ubuntu"
+    - ansible_distribution_version is version("18.04", ">")
 
 - name: APT | Install cerbot plugin
   become: true
