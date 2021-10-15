@@ -7,6 +7,7 @@
     minute: "0"
     hour: "0"
     user: "{{ certbot_cron_user }}"
+    cron_file: regenerate_{{ item.domain | replace('.', '_') }}_certificate
     job: |
       certbot certonly \
         --standalone \
