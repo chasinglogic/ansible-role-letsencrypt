@@ -1,7 +1,8 @@
 ---
 - include_tasks: certbot_{{ ansible_pkg_mgr }}.yml
 
-- set_fact:
+- name: Default regenerate_certs to False
+  set_fact:
     regenerate_certs: false
 
 - name: Check if certificate already exists.

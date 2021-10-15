@@ -1,5 +1,4 @@
 ---
-
 - name: Generate certificate if needed.
   shell: |
     certbot certonly \
@@ -8,3 +7,4 @@
     --agree-tos \
     --email {{ item.admin_email | default("admin@" + item.domain) }} \
     -d {{ item.domain }}
+  when: regenerate_certs

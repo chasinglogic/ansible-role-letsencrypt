@@ -1,6 +1,7 @@
 ---
 galaxy_info:
   author: Mathew Robinson
+  namespace: chasinglogic
   role_name: letsencrypt
   description: Generate and deploy Let's Encrypt certs to web servers
   license: GPLv3
