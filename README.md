@@ -1,16 +1,15 @@
-Ansible role: letsencrypt
-==================================
+# Ansible role: letsencrypt
 
-Generate and deploy Let's Encrypt SSL certs on a web server. 
+Generate and deploy Let's Encrypt SSL certs on a web server.
 
-Role Variables
---------------
+## Role Variables
 
-| Name          | Description                                                                                                                              | Type      | Default   | Required   |
-| --------------| -----------------------------------------------------------------------------------------------------------------------------------------| :-------: | :-------: | :--------: |
-| ssl_webserver | Indicates the name of the webserver in use. This is used to stop and start the service as well as install the appropriate certbot plugin | string    | nginx     | no         |
-| ssl_domains   | List of domain objects to generate ssl certs for See: SSL Domains                                                                        | list      | []        | no         |
-
+| Name           | Description                                                                                                                              |  Type   | Default | Required |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | :-----: | :-----: | :------: |
+| ssl_webserver  | Indicates the name of the webserver in use. This is used to stop and start the service as well as install the appropriate certbot plugin | string  |  nginx  |    no    |
+| ssl_domains    | List of domain objects to generate ssl certs for See: SSL Domains                                                                        |  list   |   []    |    no    |
+| enable_cronjob | If provided a cronjob will be created that regenerates the certificates every 2 months                                                   | boolean |  false  |    no    |
+| cron_user      | Which user the cronjob should run as, only has an effect if `enable_cronjob` is true.                                                    | string  |  root   |    no    |
 
 ### SSL Domains
 
@@ -28,8 +27,7 @@ ssl_domains:
     admin_email: nope@mine.com
 ```
 
-Example Playbook
-----------------
+## Example Playbook
 
 ```yaml
 - hosts: all

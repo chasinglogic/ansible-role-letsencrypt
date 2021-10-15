@@ -21,6 +21,11 @@
   when: regenerate_certs
   loop: "{{ ssl_domains  }}"
 
+- name: Create regeneration cronjob
+  include_tasks: cronjob.yml
+  loop: "{{ ssl_domains }}"
+  when: enable_cronjob
+
 - name: Start {{ ssl_webserver }}
   systemd:
     name: "{{ ssl_webserver }}"

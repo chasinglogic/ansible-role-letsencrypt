@@ -1,0 +1,17 @@
+---
+- name: Add regeneration command to crontab
+  ansible.builtin.cron:
+    name: "Regenerate SSL for {{ item.domain }}"
+    month: "*/2"
+    day: "1"
+    minute: "0"
+    hour: "0"
+    user: "{{ cron_user }}"
+    cron_file: regenerate_{{ item.domain }}_certificate
+    job: |
+      certbot certonly \
+        --standalone \
+        --noninteractive \
+        --agree-tos \
+        --email {{ item.admin_email | default("admin@" + item.domain) }} \
+        -d {{ item.domain }}
