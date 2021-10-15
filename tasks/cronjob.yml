@@ -6,8 +6,7 @@
     day: "1"
     minute: "0"
     hour: "0"
-    user: "{{ cron_user }}"
-    cron_file: regenerate_{{ item.domain }}_certificate
+    user: "{{ certbot_cron_user }}"
     job: |
       certbot certonly \
         --standalone \

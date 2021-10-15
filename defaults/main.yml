@@ -3,5 +3,5 @@ ssl_webserver: nginx
 ssl_domains: []
 certbot_python_prefix: python
 
-enable_cronjob: false
-cron_user: root
+enable_certbot_cronjob: false
+certbot_cron_user: root

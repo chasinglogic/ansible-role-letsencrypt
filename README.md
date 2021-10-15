@@ -4,12 +4,12 @@ Generate and deploy Let's Encrypt SSL certs on a web server.
 
 ## Role Variables
 
-| Name           | Description                                                                                                                              |  Type   | Default | Required |
-| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | :-----: | :-----: | :------: |
-| ssl_webserver  | Indicates the name of the webserver in use. This is used to stop and start the service as well as install the appropriate certbot plugin | string  |  nginx  |    no    |
-| ssl_domains    | List of domain objects to generate ssl certs for See: SSL Domains                                                                        |  list   |   []    |    no    |
-| enable_cronjob | If provided a cronjob will be created that regenerates the certificates every 2 months                                                   | boolean |  false  |    no    |
-| cron_user      | Which user the cronjob should run as, only has an effect if `enable_cronjob` is true.                                                    | string  |  root   |    no    |
+| Name                   | Description                                                                                                                              |  Type   | Default | Required |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | :-----: | :-----: | :------: |
+| ssl_webserver          | Indicates the name of the webserver in use. This is used to stop and start the service as well as install the appropriate certbot plugin | string  |  nginx  |    no    |
+| ssl_domains            | List of domain objects to generate ssl certs for See: SSL Domains                                                                        |  list   |   []    |    no    |
+| enable_certbot_cronjob | If provided a cronjob will be created that regenerates the certificates every 2 months                                                   | boolean |  false  |    no    |
+| certbot_cron_user      | Which user the cronjob should run as, only has an effect if `enable_cronjob` is true.                                                    | string  |  root   |    no    |
 
 ### SSL Domains
 
